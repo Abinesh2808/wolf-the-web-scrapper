@@ -1,2 +1,10 @@
 1) Executing, scrapy shell "<website_address>" will open you the shell to workout 	
 	For example, scrapy shell "https://quotes.toscrape.com"
+
+2) scrapy crawl quotes -o scrapped_items.json (to get data in json)
+	also csv, xml are available
+
+3) To use pipline following line needs to be uncommented in settings.py file
+	ITEM_PIPELINES = {
+	   "quotes.pipelines.QuotesPipeline": 300,
+	} 
