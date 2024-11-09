@@ -15,7 +15,18 @@ class QuotesToScrap(scrapy.Spider):
 		# author = response.css('small.author::text')[-1].extract()
 
 
-		text = response.xpath("//title/text()").extract()
-		author = response.xpath("//small[@class='author']/text()").extract()	#text of the tag
-		author = response.xpath("//small[@class='author']/@class").extract()   #attribute if the tag
-		yield {"page_title": text}
+		# text = response.xpath("//title/text()").extract()
+		# author = response.xpath("//small[@class='author']/text()").extract()	#text of the tag
+		# author = response.xpath("//small[@class='author']/@class").extract()   #attribute if the tag
+		# yield {"page_title": text}
+		
+
+		author = response.xpath("//small[@class='author']")
+		class_attribute = author.xpath("@class").extract()
+		# class_attribute = author.xpath("@class").get()         #will return one value if exists else None
+		
+		yield {"author": class_attribute}
+
+
+
+
