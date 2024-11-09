@@ -34,8 +34,8 @@ class QuotesPipeline:
         try:
             self.connection.start_transaction()
 
-            cursor.execute(""" drop table if exists quotes """)
-            cursor.execute(""" create table quotes (
+            # cursor.execute(""" drop table if exists quotes """)
+            cursor.execute(""" create table if not exists quotes (
                                     id int auto_increment primary key,
                                     title text,
                                     author text,
