@@ -1,0 +1,2 @@
+1) Executing, scrapy shell "<website_address>" will open you the shell to workout 	
+	For example, scrapy shell "https://quotes.toscrape.com"
