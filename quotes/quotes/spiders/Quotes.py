@@ -23,3 +23,9 @@ class Quotes(scrapy.Spider):
 
 			yield quote_item
 
+
+		next_page = response.xpath("//li[@class='next']/a/@hre").get()
+		# next_page = response.css("li.next a::attr(href)").get()
+
+		if next_page is not None:
+			yield response.follow(next_page, callback=self.parse)
