@@ -6,7 +6,7 @@ from scrapy.utils.response import open_in_browser
 
 class Quotes(scrapy.Spider):
 	name = "quotes"
-	start_urls = ["https://quotes.toscrape.com/"]
+	# start_urls = ["https://quotes.toscrape.com/"]
 
 	# page_number = 2
 	# start_urls = ["https://quotes.toscrape.com/page/1/"]
@@ -41,11 +41,11 @@ class Quotes(scrapy.Spider):
 			yield quote_item
 
 
-		next_page = response.xpath("//li[@class='next']/a/@href").get()
-		# next_page = response.css("li.next a::attr(href)").get()
+		# next_page = response.xpath("//li[@class='next']/a/@href").get()
+		# # next_page = response.css("li.next a::attr(href)").get()
 
-		if next_page is not None:
-			yield response.follow(next_page, callback=self.parse)
+		# if next_page is not None:
+		# 	yield response.follow(next_page, callback=self.parse)
 
 
 		# next_page = f"https://quotes.toscrape.com/page/{Quotes.page_number}/"
