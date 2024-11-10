@@ -35,7 +35,7 @@ class QuotesPipeline:
             self.connection.start_transaction()
 
             # cursor.execute(""" drop table if exists quotes """)
-            cursor.execute(""" create table if not exists quotes (
+            self.cursor.execute(""" create table if not exists quotes (
                                     id int auto_increment primary key,
                                     title text,
                                     author text,
@@ -57,7 +57,6 @@ class QuotesPipeline:
         try:
             self.create_connection()
             self.connection.start_transaction()
-            print("""insert into quotes (title,author,tags) values (%s, %s, %s)""", (data['title'], data['author'], data['tags']))
             self.cursor.execute("""insert into quotes (title,author,tags) values (%s, %s, %s)""", (data['title'], data['author'], data['tags']))
 
             self.connection.commit()
@@ -68,8 +67,6 @@ class QuotesPipeline:
             self.close_connection()
 
     def process_item(self, item, spider):
-        print("pipeline")
-        print(item['title'])
         data = {}
         data['title'] = item['title'][0]
         data['author'] = item['author'][0]
